@@ -1,0 +1,34 @@
+.app {
+  font-size: large;
+  text-align: center;
+  font-weight: bold;
+}
+
+.heading-container {
+  border: black;
+  display: flex;
+}
+
+.heading {
+  padding: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  border: 1px solid black;
+  height: 300px;
+  padding: 8px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-btn {
+  display: flex;
+  gap: 4px;
+}
