@@ -34,7 +34,9 @@ const Products = () => {
     setCurrentPage((prev) => prev + 1);
   };
 
-  return (
+  return !products.length ? (
+    <h1>No Products Found</h1>
+  ) : (
     <>
       <div className="p-5">
         <button disabled={currentPage === 0} onClick={() => gotoPreviousPage()}>
