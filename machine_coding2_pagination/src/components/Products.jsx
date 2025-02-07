@@ -10,7 +10,6 @@ const Products = () => {
   const fetchProduct = async () => {
     const res = await fetch("https://dummyjson.com/products?limit=500");
     const data = await res.json();
-    console.log(data);
     setProducts(data.products);
   };
 
@@ -22,8 +21,6 @@ const Products = () => {
   const numberOfPages = Math.ceil(totalProducts / PAGE_SIZE);
   const start = currentPage * PAGE_SIZE;
   const end = start + PAGE_SIZE;
-
-  console.log(totalProducts);
 
   const handlePageChange = (n) => {
     setCurrentPage(n);
@@ -40,22 +37,26 @@ const Products = () => {
   return (
     <>
       <div className="p-5">
-        <button
-          disabled={currentPage === numberOfPages}
-          onClick={() => gotoPreviousPage()}
-        >
+        <button disabled={currentPage === 0} onClick={() => gotoPreviousPage()}>
           ⬅️
         </button>
         {[...Array(numberOfPages).keys()].map((n) => (
           <button
             key={n}
-            className="p-2 m-2 border border-black cursor-pointer"
+            className={`p-2 m-2 border border-black cursor-pointer ${
+              currentPage === n ? "bg-gray-500 text-white" : "bg-white"
+            }`}
             onClick={() => handlePageChange(n)}
           >
             {n}
           </button>
         ))}
-        <button onClick={() => gotoNextPage()}>➡️</button>
+        <button
+          disabled={currentPage === numberOfPages - 1}
+          onClick={() => gotoNextPage()}
+        >
+          ➡️
+        </button>
       </div>
       <div className="flex flex-wrap gap-4 p-8">
         {products.slice(start, end).map((product) => (
